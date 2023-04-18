@@ -3,7 +3,7 @@ import java.util.List;
 public class PageEntry implements Comparable<PageEntry> {
     private final String pdfName;
     private final int page;
-    private final int count;
+    private int count;
 
     public PageEntry(String pdfName, int page, int count) {
         this.pdfName = pdfName;
@@ -23,13 +23,21 @@ public class PageEntry implements Comparable<PageEntry> {
         return count;
     }
 
-    @Override
-    public int compareTo(PageEntry o) {
-        return Integer.compare(count, o.count);
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override
-    public String toString(){
+    public int compareTo(PageEntry o) {
+        int compareResult = pdfName.compareTo(o.pdfName);
+        if (compareResult == 0) {
+            compareResult = Integer.compare(page, o.page);
+        }
+        return compareResult;
+    }
+
+    @Override
+    public String toString() {
         return pdfName + " " + page + " " + count;
     }
 }

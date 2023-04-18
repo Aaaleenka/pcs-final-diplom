@@ -6,8 +6,7 @@ public class PageEntryJson {
     private int page;
     private int count;
 
-    public PageEntryJson(){
-
+    public PageEntryJson() {
     }
 
     public PageEntryJson(
@@ -34,11 +33,9 @@ public class PageEntryJson {
     @Override
     public String toString() {
         return
-                        "pdfName " + pdfName + "\n" +
+                "pdfName " + pdfName + "\n" +
                         "page " + page + "\n" +
                         "count " + count + "\n";
 
     }
-
-
 }

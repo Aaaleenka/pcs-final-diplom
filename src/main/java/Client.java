@@ -12,7 +12,7 @@ public class Client {
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
-            writer.println("бизнес");
+            writer.println("Абстракция или must have: кому и зачем нужны soft skills");
 
         } catch (IOException ex) {
             ex.printStackTrace();
