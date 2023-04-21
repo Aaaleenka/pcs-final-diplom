@@ -33,9 +33,9 @@ public class PageEntryJson {
     @Override
     public String toString() {
         return
-                "pdfName " + pdfName + "\n" +
-                        "page " + page + "\n" +
-                        "count " + count + "\n";
+                "pdfName " + pdfName  +
+                        "page " + page  +
+                        "count " + count;
 
     }
 }

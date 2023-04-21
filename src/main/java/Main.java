@@ -1,4 +1,6 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import netscape.javascript.JSObject;
 import org.json.simple.JSONArray;
 
 import java.io.*;
@@ -65,11 +67,9 @@ public class Main {
                         answer.sort(comparator);
                         Collections.reverse(answer);
 
-                        JSONArray answerArray = listToJson(answer);
-                        for (int i = 0; i < answerArray.size(); i++) {
-                            System.out.println(answerArray.get(i).toString());
-                            writer.println(answerArray.get(i).toString());
-                        }
+                        System.out.println(listToJson(answer));
+                        writer.println(listToJson(answer));
+
                     }
                 }
             }
@@ -80,14 +80,19 @@ public class Main {
 
     }
 
-    public static JSONArray listToJson(List<PageEntry> list) {
+    public static String listToJson(List<PageEntry> list) {
         JSONArray answerArray = new JSONArray();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getCount() != 0) {
-                answerArray.add(new Gson().toJson(list.get(i)));
+                String json = new Gson().toJson(list.get(i));
+                PageEntryJson pageEntryJson = gson.fromJson(json, PageEntryJson.class);
+                answerArray.add(pageEntryJson);
             }
         }
-        return answerArray;
+        String prettyJsonString = gson.toJson(answerArray);
+        return prettyJsonString;
     }
 
     public static List<String> loadFromTxtFile(File textFile) throws IOException {
